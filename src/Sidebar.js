@@ -55,9 +55,7 @@ class App extends React.Component {
         style={styles.buttonImg}
       />
         }
-        {
-
-        }
+        <button style={styles.addNote}></button>
         </a>
   
         <div 
@@ -98,6 +96,17 @@ const styles = {
     width: '3%',
     marginLeft: '.7%',
     marginTop: '2%',
+  },
+
+  addNote: {
+    position: 'absolute',
+    left: '0',
+    width: '30px',
+    height: '30px',
+    marginLeft: '1.1%',
+    marginTop: '2.2%',
+    background: 'transparent',
+    border: 'none',
   },
 
   signOut: {
