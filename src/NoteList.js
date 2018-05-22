@@ -1,41 +1,51 @@
 import React from 'react'
 
-const NoteList = () => {
+class App extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+        notes: [
+            {
+                active: true,
+                noteTitle: "Note 1",
+                noteBody: "This is my first note",},
+            {
+                active: true,
+                noteTitle: "Note 2",
+                noteBody: "This is my second note",},
+            {
+                active: true,
+                noteTitle: "Note 3",
+                noteBody: "This is my third note",}
+           ]
+        }
+    }
+
+    render(){
     return(
         <div className="NoteList" style={styles.div}>
           <h3 style={styles.h3}>Notes</h3>
           <ul id="notes" style={styles.ul}>
-            <a className="active">
-              <li style={styles.li}>
-                <div className="note" >
-                  <div className="note-title" style={styles.title}>
-                    Kohlrabi welsh
-                  </div>
-                  <div className="note-body" style={styles.body}>
-                    <p>
-                       test
-                    </p>
-                  </div>
-                </div>
-              </li>
-            </a>
-            <a className="active">
-              <li style={styles.li}>
-                <div className="note" >
-                  <div className="note-title" style={styles.title}>
-                    Kohlrabi welsh
-                  </div>
-                  <div className="note-body" style={styles.body}>
-                    <p>
-                       fffffffffff 4534534 fdgfsdg dsfg sdfg fdg dfsg sdfsdaf sadfs adf sdf asdf asdf asdf asdf asfasd
-                    </p>
-                  </div>
-                </div>
-              </li>
-            </a>
+          {this.state.notes.map(notes => 
+                    <a className="active">
+                        {notes.active}
+                    <li style={styles.li}>
+                    <div className="note" >
+                    <div className="note-title" style={styles.title}>
+                        {notes.noteTitle}
+                    </div>
+                    <div className="note-body" style={styles.body}>
+                        <p>
+                            {notes.noteBody}
+                        </p>
+                    </div>
+                    </div>
+                    </li>
+                    </a>)}
           </ul>
         </div>           
     )
+  }
 }
 
 const styles = {
@@ -111,4 +121,4 @@ const styles = {
 }
 
 
-export default NoteList
+export default App
