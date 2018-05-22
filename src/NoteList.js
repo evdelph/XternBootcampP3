@@ -13,7 +13,7 @@ const NoteList = () => {
                   </div>
                   <div className="note-body" style={styles.body}>
                     <p>
-                       test 1
+                       test
                     </p>
                   </div>
                 </div>
@@ -27,7 +27,7 @@ const NoteList = () => {
                   </div>
                   <div className="note-body" style={styles.body}>
                     <p>
-                       test2
+                       fffffffffff 4534534 fdgfsdg dsfg sdfg fdg dfsg sdfsdaf sadfs adf sdf asdf asdf asdf asdf asfasd
                     </p>
                   </div>
                 </div>
