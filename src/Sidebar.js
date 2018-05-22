@@ -4,42 +4,74 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
-const Sidebar = () => {
-  return (
-    <div
-      className="Sidebar"
-      style={styles.sidebar}
-    >
-      <div
-        className="logo"
-        style={styles.logo}
-      >
-        <img
-          src={quill}
-          alt="Noteherder"
-          style={styles.logoImg}
-        />
-      </div>
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      hovered: false,
+    }
+  }
 
-      <a href="/notes">
-        <img
+  onMouse(){
+      this.setState({hovered: true,})
+  }
+
+  offMouse(){
+      this.setState({hovered: false,})
+    }
+  
+
+  render()
+  {
+    return (
+      <div
+        className="Sidebar"
+        style={styles.sidebar}
+      >
+        <div
+          className="logo"
+          style={styles.logo}
+        >
+          <img
+            src={quill}
+            alt="Noteherder"
+            style={styles.logoImg}
+          />
+        </div>
+  
+        <a href="/notes" onMouseOver={this.onMouse.bind(this)} onMouseOut={this.offMouse.bind(this)}>
+        {
+          this.state.hovered ? 
+          
+          <img
           src={newHover}
           alt="New note"
-        />
+          style={styles.buttonImg}
+        /> : 
+        
         <img
-          src={newIcon}
-          alt="New note"
-        />
-      </a>
+        src={newIcon}
+        alt="New note"
+        style={styles.buttonImg}
+      />
+        }
+        {
 
-      <div className="SignOut">
-        <button>
-          <i className="fa fa-sign-out"></i>
-        </button>
+        }
+        </a>
+  
+        <div 
+          className="SignOut"
+        >
+          <button style={styles.signOut}>
+            <i className="fa fa-sign-out"></i>
+          </button>
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+  }
+ 
 
 const styles = {
   sidebar: {
@@ -56,9 +88,33 @@ const styles = {
     fontSize: '3rem',
   },
   logoImg: {
-    width: '3rem',
-    paddingLeft: '0.4rem',
-  }
+    width: '30px',
+    paddingLeft: '4px',
+  },
+
+  buttonImg: {
+    position: 'absolute',
+    left: '0',
+    width: '3%',
+    marginLeft: '.7%',
+    marginTop: '2%',
+  },
+
+  signOut: {
+    position: 'absolute',
+    bottom: '1rem',
+    left: '1.5rem',
+    color: '#008BF8',
+    cursor: 'pointer',
+    display: 'inline-block',
+    font: 'normal normal normal 14px/1 FontAwesome',
+    fontSize: '2rem',
+    background: 'transparent',
+    border: 'none',
+  },
 }
 
-export default Sidebar
+
+
+
+export default App
