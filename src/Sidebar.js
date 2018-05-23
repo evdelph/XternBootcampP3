@@ -4,27 +4,22 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
-class App extends React.Component {
-  constructor(){
-    super()
-    this.state = {
-      hovered: false,
-    }
+class Sidebar extends React.Component {
+  state = {
+    newIconHovered: false,
   }
 
-  onMouse(){
-      this.setState({hovered: true,})
+  handleMouseEnter() {
+    this.setState({ newIconHovered: true })
   }
 
-  offMouse(){
-      this.setState({hovered: false,})
-    }
-  
+  handleMouseLeave() {
+    this.setState({ newIconHovered: false })
+  }
 
-  render()
-  {
+  render() {
     return (
-      <div
+      <nav
         className="Sidebar"
         style={styles.sidebar}
       >
@@ -38,38 +33,43 @@ class App extends React.Component {
             style={styles.logoImg}
           />
         </div>
-  
-        <a href="/notes" onMouseOver={this.onMouse.bind(this)} onMouseOut={this.offMouse.bind(this)}>
-        {
-          this.state.hovered ? 
-          
-          <img
-          src={newHover}
-          alt="New note"
-          style={styles.buttonImg}
-        /> : 
-        
-        <img
-        src={newIcon}
-        alt="New note"
-        style={styles.buttonImg}
-      />
-        }
-        <button style={styles.addNote}></button>
-        </a>
-  
-        <div 
-          className="SignOut"
+        <a
+          className="new-note"
+          href="/notes"
+          style={styles.newNote}
+          onMouseEnter={() => this.handleMouseEnter()}
+          onMouseLeave={() => this.handleMouseLeave()}
         >
-          <button style={styles.signOut}>
-            <i className="fa fa-sign-out"></i>
+          <img
+            src={newHover}
+            alt="New note"
+            style={styles.newNoteImg}
+          />
+          <img
+            className="outline"
+            src={newIcon}
+            alt="New note"
+            style={{
+              ...styles.newNoteImg,
+              opacity: this.state.newIconHovered ? 0 : 1
+            }}
+          />
+        </a>
+        <div
+          className="SignOut"
+          style={styles.signOut}
+        >
+          <button style={styles.button}>
+            <i
+              className="fa fa-sign-out"
+              style={styles.buttonIcon}
+            ></i>
           </button>
         </div>
-      </div>
+      </nav>
     )
   }
-  }
- 
+}
 
 const styles = {
   sidebar: {
@@ -86,44 +86,34 @@ const styles = {
     fontSize: '3rem',
   },
   logoImg: {
-    width: '30px',
-    paddingLeft: '4px',
+    width: '3rem',
+    paddingLeft: '0.4rem',
   },
-
-  buttonImg: {
+  newNote: {
+    marginTop: '2rem',
+    position: 'relative',
+    width: '4rem',
+  },
+  newNoteImg: {
     position: 'absolute',
     left: '0',
-    width: '3%',
-    marginLeft: '.7%',
-    marginTop: '2%',
+    width: '100%',
+    transition: 'opacity 0.25s ease-in-out',
   },
-
-  addNote: {
-    position: 'absolute',
-    left: '0',
-    width: '30px',
-    height: '30px',
-    marginLeft: '1.1%',
-    marginTop: '2.2%',
-    background: 'transparent',
-    border: 'none',
-  },
-
   signOut: {
     position: 'absolute',
     bottom: '1rem',
-    left: '1.5rem',
-    color: '#008BF8',
+  },
+  button: {
+    backgroundColor: 'transparent',
+    border: '0',
+    color: '#008bf8',
     cursor: 'pointer',
-    display: 'inline-block',
-    font: 'normal normal normal 14px/1 FontAwesome',
+    outline: 'none',
+  },
+  buttonIcon: {
     fontSize: '2rem',
-    background: 'transparent',
-    border: 'none',
   },
 }
 
-
-
-
-export default App
+export default Sidebar

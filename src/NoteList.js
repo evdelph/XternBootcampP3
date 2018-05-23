@@ -1,6 +1,7 @@
 import React from 'react'
+import Sidebar from './Sidebar'
 
-class App extends React.Component{
+class App1 extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -8,18 +9,30 @@ class App extends React.Component{
             {
                 active: true,
                 noteTitle: "Note 1",
-                noteBody: "This is my first note",},
+                noteBody: "This is my first note",
+                hovered: false},
             {
                 active: true,
                 noteTitle: "Note 2",
-                noteBody: "This is my second note",},
+                noteBody: "This is my second note",
+                hovered: false},
             {
                 active: true,
                 noteTitle: "Note 3",
-                noteBody: "This is my third note",}
+                noteBody: "This is my third note",
+                hovered: false}
            ]
         }
     }
+    onMouse(){
+        this.setState({hovered: true,})
+        console.log('Mouse on')
+    }
+  
+    offMouse(){
+        this.setState({hovered: false,})
+        console.log('mouse off')
+      }
 
     render(){
     return(
@@ -29,7 +42,7 @@ class App extends React.Component{
           {this.state.notes.map(notes => 
                     <a className="active">
                         {notes.active}
-                    <li style={styles.li}>
+                    <li onMouseOver={this.onMouse.bind(this)} onMouseOut={this.offMouse.bind(this)} style={styles.li}>                    
                     <div className="note" >
                     <div className="note-title" style={styles.title}>
                         {notes.noteTitle}
@@ -46,6 +59,8 @@ class App extends React.Component{
         </div>           
     )
   }
+
+ 
 }
 
 const styles = {
@@ -82,6 +97,28 @@ const styles = {
         border: "none",
         
         
+    },
+
+    titleHovered : 
+    {
+        padding: "0!important",
+        color: "white",
+        background: "cornflowerblue",
+        border: "none",
+        fontFamily: "Fauna One",
+        fontSize: "120%",
+        fontWeight: "400",
+        whiteSpace: "nowrap",
+        overflowX: "hidden",
+        oTextOverflow: "ellipsis",
+        textOverflow: "ellipsis",
+        marginLeft:"10%",
+        marginTop:"7%",
+    },
+
+    bodyHovered:
+    {
+
     },
 
     div: 
@@ -121,4 +158,4 @@ const styles = {
 }
 
 
-export default App
+export default App1
