@@ -3,6 +3,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
+//import base from './rebase';
 
 class Main extends React.Component {
   constructor() {
@@ -11,6 +12,8 @@ class Main extends React.Component {
       currentNote: this.blankNote(),
       notes: [],
     }
+
+    window.addEventListener("beforeunload", this.componentWillUpdate)
   }
 
   blankNote = () => {
@@ -20,6 +23,29 @@ class Main extends React.Component {
       body: '',
     }
   }
+
+  componentWillUpdate = () => {
+    localStorage.setItem('state',JSON.stringify(this.state))
+}
+
+  componentWillMount = () => {
+      const noteItem = window.localStorage.getItem('state')
+      try {this.setState(JSON.parse(noteItem))} 
+      catch (e) {this.setState({
+        currentNote: this.blankNote(),
+        notes: [],
+      })}
+    }
+
+
+  mountData(){
+      this.componentWillMount()
+  }
+
+  updateData(){
+      this.componentWillUpdate()
+  }
+
 
   setCurrentNote = (note) => {
     this.setState({ currentNote: note })    
@@ -52,12 +78,8 @@ class Main extends React.Component {
       notes.splice(indexSelectedItem,1)
       this.setState({notes})
      
-      // delete from list
+      // delete from list and form
       this.setCurrentNote(this.blankNote())
-      
-     
-
-      
   }
 
   render() {
