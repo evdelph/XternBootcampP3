@@ -35,7 +35,7 @@
   .NoteForm input[name=title] {
     border: none;
     font-size: 200%;
-    font-family: Fauna One;
+    font-family: Arial, Helvetica, sans-serif;
     color: #008bf8;
     font-weight: 400;
     width: 100%;
@@ -46,4 +46,5 @@
     width: 100%;
     height: calc(100vh - 140px);
     font-size: 1.3em;
+    font-family: Arial,
   }

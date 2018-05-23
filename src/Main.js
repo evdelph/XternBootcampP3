@@ -8,44 +8,71 @@ class Main extends React.Component {
   constructor() {
     super()
     this.state = {
-      currentNote: {
-        id: null,
-        title: '',
-        body: '',
-      },
-      notes: [
-        {
-          id: 1,
-          title: 'SQL Resources',
-          body: 'Here are resources to learn SQL.',
-        },
-        {
-          id: 2,
-          title: 'Python Resources',
-          body: 'Here are resources to learn python',
-        },
-        {
-          id: 3,
-          title: 'Data analytics resources',
-          body: 'Here are resources for data analytics',
-        },
-      ]
+      currentNote: this.blankNote(),
+      notes: [],
+    }
+  }
+
+  blankNote = () => {
+    return {
+      id: null,
+      title: '',
+      body: '',
     }
   }
 
   setCurrentNote = (note) => {
-    this.setState({ currentNote: note })
+    this.setState({ currentNote: note })    
+  }
+
+  resetCurrentNote = () => {
+    this.setCurrentNote(this.blankNote())
+  }
+
+  saveNote = (note) => {
+    const notes = [...this.state.notes]
+
+    if (!note.id) {
+      note.id = Date.now()
+      notes.unshift(note)
+    } else {
+      const i = notes.findIndex(currentNote => currentNote.id === note.id)
+      notes[i] = note
+    }
+
+    this.setState({ notes })
+    this.setCurrentNote(note)
+  }
+  
+  deleteNote = (note) => {
+      let notes = [...this.state.notes]
+      
+      // delete from array
+      const indexSelectedItem = notes.indexOf(note)
+      notes.splice(indexSelectedItem,1)
+      this.setState({notes})
+     
+      // delete from list
+      this.setCurrentNote(this.blankNote())
+      
+     
+
+      
   }
 
   render() {
     return (
       <div className="Main" style={style}>
-        <Sidebar />
+        <Sidebar resetCurrentNote={this.resetCurrentNote} />
         <NoteList
           notes={this.state.notes}
           setCurrentNote={this.setCurrentNote}
         />
-        <NoteForm currentNote={this.state.currentNote} />
+        <NoteForm
+          currentNote={this.state.currentNote}
+          saveNote={this.saveNote}
+          deleteNote={this.deleteNote}
+        />
       </div>
     )
   }
