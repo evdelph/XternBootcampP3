@@ -1,20 +1,23 @@
 import React from 'react'
 
-const Note  = (props) => {
-    return(
-        <li>
-            <div className="note">
-                <div className="note-title">
-                    {props.noteList.title}
-                </div>
-                <div className="note-body">
-                    <p>
-                        {props.noteList.body}
-                    </p>
-                </div>
-            </div>
-        </li>
-    )
+const Note = ({note, setCurrentNote}) => {
+  return (
+    <li
+      className="Note"
+      onClick={() => setCurrentNote(note)}
+    >
+      <div className="note">
+        <div className="note-title">
+          {note.title }
+        </div>
+        <div className="note-body">
+          <p>
+            {note.body }
+          </p>
+        </div>
+      </div>
+    </li>
+  )
 }
 
 export default Note
