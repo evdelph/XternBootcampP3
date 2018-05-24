@@ -5,7 +5,7 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
-const Sidebar = ({resetCurrentNote}) => {
+const Sidebar = ({resetCurrentNote, signOut}) => {
   return (
     <nav className={css(styles.sidebar)}>
       <div className={css(styles.logo)}>
@@ -33,7 +33,8 @@ const Sidebar = ({resetCurrentNote}) => {
           className={css(styles.newNoteImg, styles.newNoteImgHover)}
         />
       </a>
-      <div className={css(styles.signOut)}>
+      <div className={css(styles.signOut)}
+           onClick={signOut}>
         <button className={css(styles.button)}>
           <i className={`fas fa-sign-out-alt ${css(styles.buttonIcon)}`}
           title="Sign Out"></i>
