@@ -1,31 +1,34 @@
 import React from 'react'
+import "./Signin.css"
+import {auth, githubProvider} from './base'
+import googleLogo from './google.svg'
 
-const SignIn = ({handleAuth}) => {
+const SignIn = () => {
+  const authenticate = (provider) => {
+    auth.signInWithPopup(provider)
+  }
 
     return(
-        <div className="App">
         <div className="SignIn">
           <header className="Header">
             <img src="media/quill.svg" alt=""/>
-            <span className="title">Noteherder</span>
+            <span className="title"></span>
           </header>
           <main>
             <h3>Hey, Nerd! You Like Notes?</h3>
             <p>You never know when you'll need to write crap down. In fact, you should probably be taking notes right now.</p>
             <button className="github"
-            onClick={handleAuth}
+            onClick={() => authenticate(githubProvider)}
             >
-              <i className="fa fa-github"></i>
+              <i className="fab fa-github"></i>
               Sign in with GitHub
             </button>
             <button className="google">
-              <img src="media/google.svg" alt=""/>
+              <img src={googleLogo} alt=""/>
               Sign in with Google
             </button>
           </main>
         </div>
-      </div>
-
     )
 }
 
