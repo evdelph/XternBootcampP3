@@ -1,9 +1,10 @@
 import React from 'react'
 import "./Signin.css"
-import {auth, githubProvider} from './base'
+import {auth, githubProvider, googleProvider} from './base'
 import googleLogo from './google.svg'
 
-const SignIn = () => {
+const SignIn = ({handleAuth}) => {
+  console.log('here')
   const authenticate = (provider) => {
     auth.signInWithPopup(provider)
   }
@@ -23,7 +24,8 @@ const SignIn = () => {
               <i className="fab fa-github"></i>
               Sign in with GitHub
             </button>
-            <button className="google">
+            <button className="google"
+            onClick={() => authenticate(googleProvider)}>
               <img src={googleLogo} alt=""/>
               Sign in with Google
             </button>
