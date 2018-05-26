@@ -8,7 +8,16 @@ import SignIn from './Signin'
 class App extends Component {
   state = {
     uid: null,
+    data: null,
   }
+
+
+  getArray(){
+    console.log([...this.state.uid])
+    return [...this.state.uid]
+  }
+
+  
 
   componentWillMount(){
     this.setState({uid: JSON.parse(window.localStorage.getItem('uids'))})
@@ -27,6 +36,7 @@ class App extends Component {
   handleAuth = (user) => {
     this.setState({ uid: user.uid })
     window.localStorage.setItem('uids', JSON.stringify(this.state.uid))
+    this.getArray()
   }
 
   signedIn = () => {

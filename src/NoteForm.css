@@ -10,6 +10,9 @@
     -ms-flex-positive: 1;
     flex-grow: 1;
     padding: 0 3rem;
+    background-image: url(magda-fou-421485-unsplash.jpg);
+    background-size: cover;
+    height: 100vh;
   }
   .NoteForm .form-actions {
     padding-top: 1rem;
@@ -25,7 +28,7 @@
     padding: 0;
   }
   .NoteForm button[type=submit] {
-    background-color: #008bf8;
+    background-color: #a2cef0;
     border-radius: 4px;
     color: #fff;
     font-size: 2rem;
@@ -44,21 +47,25 @@
   }
   .NoteForm form {
     margin: 0 auto;
-    max-width: 80rem;
+    max-width: 90rem;
   }
   .NoteForm input[name=title] {
     border: none;
-    font-size: 200%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+    font-family: 'Raleway', sans-serif;
     color: black;
-    font-weight: 400;
+    font-weight: bold;
     width: 100%;
     outline: none;
+    background-color: rgba(255, 255, 255, 0);
+  
   }
   .NoteForm textarea {
-    border-color: #eee;
+    border-color:whitesmoke;
     width: 100%;
     height: calc(100vh - 140px);
     font-size: 1.3em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.76);
   }

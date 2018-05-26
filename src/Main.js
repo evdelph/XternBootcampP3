@@ -12,7 +12,7 @@ class Main extends React.Component {
     this.state = {
       currentNote: this.blankNote(),
       notes: [],
-    }
+     }
   }
 
   blankNote = () => {
@@ -22,9 +22,9 @@ class Main extends React.Component {
       body: '',
     }
   }
-
-  componentWillMount(){
-    base.syncState('notes', {
+  
+  componentWillMount (){
+    base.syncState('uid', {
       context: this,
       state: 'notes',
       asArray: true
@@ -32,7 +32,7 @@ class Main extends React.Component {
   )}
 
   setCurrentNote = (note) => {
-    this.setState({ currentNote: note })    
+    this.setState({ currentNote: note })  
   }
 
   resetCurrentNote = () => {
