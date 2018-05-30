@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 import base from './base'
 import Sidebar from './Sidebar'
@@ -42,11 +43,9 @@ class Main extends React.Component {
     const notes = [...this.state.notes]
 
     if (!note.id) {
-      // new note
       note.id = Date.now()
       notes.push(note)
     } else {
-      // existing note
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     }
@@ -68,6 +67,13 @@ class Main extends React.Component {
   }
 
   render() {
+    const formProps = {
+      currentNote: this.state.currentNote,
+      saveNote: this.saveNote,
+      removeCurrentNote: this.removeCurrentNote,
+      notes: this.state.notes,
+    }
+
     return (
       <div className="Main" style={style}>
         <Sidebar
@@ -76,13 +82,27 @@ class Main extends React.Component {
         />
         <NoteList
           notes={this.state.notes}
-          setCurrentNote={this.setCurrentNote}
         />
-        <NoteForm
-          currentNote={this.state.currentNote}
-          saveNote={this.saveNote}
-          removeCurrentNote={this.removeCurrentNote}
-        />
+
+        <Switch>
+          <Route
+            path="/notes/:id"
+            render={navProps => (
+              <NoteForm
+                {...formProps}
+                {...navProps}
+              />
+            )}
+          />
+          <Route
+            render={navProps => (
+              <NoteForm
+                {...formProps}
+                {...navProps}
+              />
+            )}
+          />
+        </Switch>
       </div>
     )
   }
