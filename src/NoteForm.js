@@ -29,10 +29,6 @@ class NoteForm extends Component {
     }
   }
 
-  //updateAt = (note) => {
-  //  this.setState({time: new Date(Date.now())})
-  //}
-
   handleChanges = (ev) => {
     const note = {...this.state.note}
     note[ev.target.name] = ev.target.value
@@ -42,9 +38,8 @@ class NoteForm extends Component {
       note.time=new Date(Date.now())
     )
     console.log(note.time=new Date(Date.now()))
-    console.log(this.blankNote())
   }
-
+  
   render() {
     const { removeNote } = this.props
     return (

@@ -27,13 +27,10 @@ class Main extends React.Component {
       id: null,
       title: '',
       body: '',
-      time: null
+      time: null,
     }
   }
 
-  updateAt = (note) => {
-    this.setState({time: new Date(Date.now())})
-  }
 
   saveNote = (note) => {
     let shouldRedirect = false
