@@ -25,7 +25,7 @@ class NoteForm extends Component {
       id: null,
       title: '',
       body: '',
-      time: null
+      //time: null
     }
   }
 
@@ -35,9 +35,9 @@ class NoteForm extends Component {
     this.setState(
       { note },
       () => this.props.saveNote(note),
-      note.time=new Date(Date.now())
+      //note.time=new Date(Date.now())
     )
-    console.log(note.time=new Date(Date.now()))
+    //console.log(note.time=new Date(Date.now()))
   }
   
   render() {

@@ -38,12 +38,17 @@ class Main extends React.Component {
 
     if (!note.id) {
       note.id = Date.now()
-      notes.push(note)
+      note.time = new Date(Date.now())
+      notes.unshift(note)
       shouldRedirect = true
     } else {
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
+      notes.splice(i,1)
+      notes.unshift(note)
     }
+
+    console.log(new Date(Date.now()))
 
     this.setState(
       { notes }
