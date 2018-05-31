@@ -25,16 +25,24 @@ class NoteForm extends Component {
       id: null,
       title: '',
       body: '',
+      time: null
     }
   }
+
+  //updateAt = (note) => {
+  //  this.setState({time: new Date(Date.now())})
+  //}
 
   handleChanges = (ev) => {
     const note = {...this.state.note}
     note[ev.target.name] = ev.target.value
     this.setState(
       { note },
-      () => this.props.saveNote(note)
+      () => this.props.saveNote(note),
+      note.time=new Date(Date.now())
     )
+    console.log(note.time=new Date(Date.now()))
+    console.log(this.blankNote())
   }
 
   render() {

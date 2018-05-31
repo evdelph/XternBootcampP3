@@ -27,7 +27,12 @@ class Main extends React.Component {
       id: null,
       title: '',
       body: '',
+      time: null
     }
+  }
+
+  updateAt = (note) => {
+    this.setState({time: new Date(Date.now())})
   }
 
   saveNote = (note) => {
@@ -35,17 +40,17 @@ class Main extends React.Component {
     const notes = [...this.state.notes]
 
     if (!note.id) {
-      // new note
       note.id = Date.now()
       notes.push(note)
       shouldRedirect = true
     } else {
-      // existing note
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     }
 
-    this.setState({ notes })
+    this.setState(
+      { notes }
+    )
 
     if (shouldRedirect) {
       this.props.history.push(`/notes/${note.id}`)
@@ -73,7 +78,8 @@ class Main extends React.Component {
     return (
       <div className="Main" style={style}>
         <Sidebar signOut={this.props.signOut} />
-        <NoteList notes={this.state.notes} />
+        <NoteList notes={this.state.notes}/>
+        
 
         <Switch>
           <Route
